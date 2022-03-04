@@ -1,0 +1,14 @@
+{% extends 'main.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div >
+    <div>
+        <a href="{% url 'register' %}">Add New User</a>
+    </div>
+    <div>
+        {% for user_s in user_s %}
+            <h3><a href="{% url 'user-details' user_s.id%}"> {{user_s.username}}</a></h3>
+        {% endfor %}
+    </div>
+</div>
+{% endblock content %}

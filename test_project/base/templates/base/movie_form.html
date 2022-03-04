@@ -1,0 +1,39 @@
+{% extends 'main.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div>
+            <label for="movie_name">Name :</label>
+            {{form.name}}
+        </div>
+        <div>
+            <label for="movie_description">Description :</label>
+            {{form.description}}
+        </div>
+        <div>
+            <label for="movie_description">Shot Description :</label>
+            {{form.s_description}}
+        </div>
+        <div>
+            <label for="movie_genre">Genre :</label>
+            <input required type="text", name="movie_genre", list="genre-list">
+            <datalist id="genre-list">
+                <select id="movie_genre">
+                    {% for genres in genre %}
+                        <option value="{{genres.genre}}">{{genres.genre}}</option>
+                    {% endfor %} 
+                </select> 
+            </datalist>
+        </div>
+        <div>
+            <label for="movie_url">Url :</label>
+            {{form.video_url}}
+        </div>
+        <div>
+            <label for="movie_thumbnail">Thumbnail :</label>
+            {{form.thumbnail}}
+        </div>
+        <input type="Submit"  value="ADD">
+    </form>
+{% endblock content %}

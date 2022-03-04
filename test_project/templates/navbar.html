@@ -1,0 +1,33 @@
+<style>
+    .navbar{
+        display: grid;
+        grid-template-columns: 1fr 3fr 1fr;
+    }
+</style>
+<div class= "navbar">
+   <div>
+    <a href="/">
+        <h2>MOVIES</h2>
+    </a>
+   </div>
+   <div>
+        
+   </div> 
+   <div>
+            
+        {% if user.is_staff%}
+            <a href="{% url 'user-settings' %}">User Settings</a>
+        {% endif %}
+        {% if user.is_authenticated%}
+            <h4>
+                <a href="{% url 'profile' %}">Profile</a>
+                <a href="{% url 'logout' %}">logout</a>
+            </h4>
+        {% else %}
+            <h4>
+                <a href="{% url 'login' %}">login</a>
+                <a href="{% url 'register' %}">Register</a>
+            </h4>
+        {% endif %}
+    </div>
+</div>

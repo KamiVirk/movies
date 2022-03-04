@@ -1,0 +1,44 @@
+{% extends 'main.html' %}
+
+{% block content %}
+    <style>
+        .container{
+            display: grid;
+            grid-template-columns: 1fr 3fr 1fr;
+        }
+    </style>
+    <div class="container">
+        <div>
+            <h3>Category</h3>
+            <hr>
+            <a href="{% url 'movie-list' %}">All</a>
+            {% for catagories in category%}
+                <p>        
+                    <a href="{% url 'movie-list'%}?q={{catagories.genre}}">{{catagories.genre}}</a>
+                </p>
+            {% endfor %}
+        </div>
+        <div>
+            {% if user.is_staff%}
+            <a href="{% url 'add-movie' %}">ADD MOVIE</a>
+            <hr>
+            {% endif %}
+            {% for object in movie%}
+                <div>
+                    <div><a href="{% url 'movie-detail' object.id %}""><img src="{{object.thumbnail.url}}" alt=""></a></div>
+                    <p></p>
+                    <small>{{object.s_description}}</small>
+                    <h3> <a href="{% url 'movie-detail' object.id %}"> {{object}}</a></h3>
+                </div>
+            {% endfor %}
+        </div>
+        <div>
+            <h4>
+                Search
+            </h4>
+            <form method="GET" action="{% url 'movie-list' %}">
+                <input type="text" name="q" placeholder="Search...">
+            </form>
+        </div>
+    </div>
+{% endblock content %}

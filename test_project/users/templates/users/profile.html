@@ -1,0 +1,31 @@
+{% extends 'main.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<style>
+    .container{
+        display: grid;
+        grid-template-columns: 1fr 3fr 1fr;
+    }
+</style>
+<div class="container">
+    <div></div>
+    <div>
+    <img src="{{user.profile.image.url}}" alt="">
+    <h3>{{user.username}}</h3>
+    <small>{{user.email}}</small>
+    <hr>
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div>
+            {{u_form|crispy }}
+            {{p_form|crispy }}
+        </div>
+        <hr>
+        <input type="Submit"  value="Update">
+    </form>
+    </div>
+    <div>
+
+    </div>
+</div>
+{% endblock content %}

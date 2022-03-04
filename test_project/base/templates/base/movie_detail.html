@@ -1,0 +1,32 @@
+{% extends 'main.html' %}
+
+{% block content %}
+<style>
+    .container{
+        display: grid;
+        grid-template-columns: 2fr 3fr ;
+    }
+</style>
+    <div class="container" >
+
+        <div >
+            <a href="{{movie.video_url}}"><img src="{{movie.thumbnail.url}}" alt=""></a>
+        </div>
+        
+        <div>
+            {% if user.is_staff %}
+                <a href="{% url 'movie-update' movie.id %}">Edit</a>
+                <a href="{% url 'movie-delete' movie.id %}">Delete</a>
+                <hr>
+             {% endif %}   
+                <h3>Name : {{movie.name}}</h3>
+                <p>Description : {{movie.description}}</p>
+                <p>Genre : {{movie.movie_genre}}</p> 
+                <p>Review : {{rating_avg}}</p>
+                <small>URl : <a href="{{movie.video_url}}">{{movie.video_url}}</a></small>
+                <hr>
+                <a href="{% url 'rate-movie' movie.id %}">Rate</a>
+        
+    </div>  
+
+{% endblock content %}

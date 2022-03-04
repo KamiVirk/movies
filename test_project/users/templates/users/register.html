@@ -1,0 +1,15 @@
+{% extends 'main.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+    <form method="POST">
+        {% csrf_token %}
+        <div>
+            {{form|crispy }}
+        </div>
+        <input type="Submit"  value="SIGN UPP">
+        <hr>
+    </form>
+    <div>
+        {{form.error}}
+    </div>
+{% endblock content %}
